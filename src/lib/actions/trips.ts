@@ -14,6 +14,8 @@ export interface TripFormInput {
   travelers: string[];
   color: string;
   purpose: string;
+  country: string;
+  city: string;
   notes: string;
 }
 

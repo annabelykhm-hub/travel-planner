@@ -16,7 +16,9 @@ export function TripCard({ trip, conflict }: { trip: Trip; conflict?: boolean })
         />
         <div className="pl-3">
           <div className="flex items-start justify-between gap-2">
-            <h3 className="text-base font-semibold tracking-tight">{trip.destination}</h3>
+            <h3 className="text-base font-semibold tracking-tight">
+                {trip.city ? `${trip.city}, ${trip.country || trip.destination}` : (trip.country || trip.destination)}
+              </h3>
             <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider ${statusStyle(trip.status)}`}>
               {trip.status === "in_progress" ? "Now" : trip.status}
             </span>

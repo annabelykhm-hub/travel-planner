@@ -6,6 +6,8 @@ export interface Trip {
   id: string;
   title: string;
   destination: string;
+  country: string | null;
+  city: string | null;
   start_date: string;
   end_date: string;
   status: TripStatus;

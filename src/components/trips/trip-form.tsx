@@ -21,7 +21,9 @@ export function TripForm({ trip }: { trip?: Trip }) {
     setError(null);
     const input: TripFormInput = {
       title: String(formData.get("title")),
-      destination: String(formData.get("destination")),
+      destination: String(formData.get("country")),
+      country: String(formData.get("country")),
+      city: String(formData.get("city") ?? ""),
       start_date: String(formData.get("start_date")),
       end_date: String(formData.get("end_date")),
       status: status as TripFormInput["status"],
@@ -55,15 +57,15 @@ export function TripForm({ trip }: { trip?: Trip }) {
         <Input id="title" name="title" defaultValue={trip?.title} placeholder="Lisbon Offsite" required />
       </div>
 
-      <div className="space-y-1.5">
-        <Label htmlFor="destination">Destination</Label>
-        <Input
-          id="destination"
-          name="destination"
-          defaultValue={trip?.destination}
-          placeholder="Lisbon, Portugal"
-          required
-        />
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-1.5">
+          <Label htmlFor="country">Country</Label>
+          <Input id="country" name="country" defaultValue={trip?.country ?? trip?.destination ?? ""} placeholder="Portugal" required />
+        </div>
+        <div className="space-y-1.5">
+          <Label htmlFor="city">City <span className="text-muted-foreground">(optional)</span></Label>
+          <Input id="city" name="city" defaultValue={trip?.city ?? ""} placeholder="Lisbon" />
+        </div>
       </div>
 
       <div className="space-y-1.5">

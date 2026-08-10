@@ -27,9 +27,9 @@ export function TimelineTripBar({
         backgroundColor: trip.color,
         border: conflict ? "2px solid #f59e0b" : undefined,
       }}
-      title={`${trip.destination} — ${trip.title}`}
+      title={trip.city ? `${trip.city}, ${trip.country || trip.destination}` : (trip.country || trip.destination)}
     >
-      <span className="truncate">{trip.destination}</span>
+      <span className="truncate">{trip.city ? `${trip.city}, ${trip.country || trip.destination}` : (trip.country || trip.destination)}</span>
     </Link>
   );
 }
