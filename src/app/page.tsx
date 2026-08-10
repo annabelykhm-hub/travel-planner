@@ -36,7 +36,7 @@ export default async function DashboardPage() {
   const active = allTrips.filter((t) => t.status !== "cancelled");
   const current = active.filter((t) => t.start_date <= today && t.end_date >= today);
   const upcoming = active.filter((t) => t.start_date > today);
-  const past = active.filter((t) => t.end_date < today);
+  const past = active.filter((t) => t.end_date < today).reverse();
   const cancelled = allTrips.filter((t) => t.status === "cancelled");
 
   function TripSection({ title, items }: { title: string; items: Trip[] }) {
