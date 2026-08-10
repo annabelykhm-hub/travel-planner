@@ -6,15 +6,15 @@ export function TripCard({ trip, conflict }: { trip: Trip; conflict?: boolean })
   return (
     <Link href={`/trips/${trip.id}`}>
       <div
-        className={`group relative overflow-hidden rounded-xl border bg-card p-5 transition-all hover:shadow-sm hover:-translate-y-px ${
+        className={`group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-sm hover:-translate-y-px ${
           conflict ? "border-amber-300" : "border-border"
         }`}
       >
         <div
-          className="absolute left-0 top-0 h-full w-1 rounded-l-xl"
+          className="h-1.5 w-full"
           style={{ backgroundColor: trip.color }}
         />
-        <div className="pl-3">
+        <div className="p-5">
           <div className="flex items-start justify-between gap-2">
             <h3 className="text-base font-semibold tracking-tight">
                 {trip.city ? `${trip.city}, ${trip.country || trip.destination}` : (trip.country || trip.destination)}
@@ -35,6 +35,7 @@ export function TripCard({ trip, conflict }: { trip: Trip; conflict?: boolean })
     </Link>
   );
 }
+
 
 function statusStyle(status: string) {
   switch (status) {
