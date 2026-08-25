@@ -16,6 +16,8 @@ export function TripForm({ trip }: { trip?: Trip }) {
   const [color, setColor] = useState(trip?.color ?? TRIP_COLORS[0]);
   const [status, setStatus] = useState(trip?.status ?? "planning");
   const [travelers, setTravelers] = useState(trip?.travelers.join(", ") ?? "");
+  const [startDate, setStartDate] = useState(trip?.start_date ?? "");
+  const [endDate, setEndDate] = useState(trip?.end_date ?? "");
 
   function handleSubmit(formData: FormData) {
     setError(null);
@@ -76,11 +78,30 @@ export function TripForm({ trip }: { trip?: Trip }) {
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1.5">
           <Label htmlFor="start_date">Start date</Label>
-          <Input id="start_date" name="start_date" type="date" defaultValue={trip?.start_date} required />
+          <Input
+            id="start_date"
+            name="start_date"
+            type="date"
+            value={startDate}
+            onChange={(e) => {
+              const val = e.target.value;
+              setStartDate(val);
+              if (!endDate || endDate < val) setEndDate(val);
+            }}
+            required
+          />
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="end_date">End date</Label>
-          <Input id="end_date" name="end_date" type="date" defaultValue={trip?.end_date} required />
+          <Input
+            id="end_date"
+            name="end_date"
+            type="date"
+            value={endDate}
+            min={startDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            required
+          />
         </div>
       </div>
 
