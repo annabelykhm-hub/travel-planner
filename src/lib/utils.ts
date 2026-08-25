@@ -17,6 +17,12 @@ export function formatDateRange(start: string, end: string) {
   return `${fmt(startDate, false)} – ${fmt(endDate, true)}`;
 }
 
+export function tripDays(start: string, end: string) {
+  const ms = new Date(end + "T00:00:00").getTime() - new Date(start + "T00:00:00").getTime();
+  const days = Math.round(ms / 86400000) + 1;
+  return `${days} ${days === 1 ? "day" : "days"}`;
+}
+
 export function formatBytes(bytes: number | null) {
   if (!bytes) return "—";
   const units = ["B", "KB", "MB", "GB"];

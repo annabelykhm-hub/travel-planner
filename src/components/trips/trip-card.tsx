@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Trip } from "@/lib/types";
-import { formatDateRange } from "@/lib/utils";
+import { formatDateRange, tripDays } from "@/lib/utils";
 
 export function TripCard({ trip, conflict }: { trip: Trip; conflict?: boolean }) {
   return (
@@ -26,9 +26,17 @@ export function TripCard({ trip, conflict }: { trip: Trip; conflict?: boolean })
           {trip.purpose && (
             <p className="mt-1 text-xs font-medium text-foreground/70">{trip.purpose}</p>
           )}
-          <p className="mt-1.5 text-xs text-muted-foreground">{formatDateRange(trip.start_date, trip.end_date)}</p>
+          <p className="mt-1.5 text-xs text-muted-foreground">
+            {formatDateRange(trip.start_date, trip.end_date)}
+            <span className="ml-1.5 text-muted-foreground/60">· {tripDays(trip.start_date, trip.end_date)}</span>
+          </p>
           {trip.travelers.length > 0 && (
             <p className="mt-1 text-xs text-muted-foreground">{trip.travelers.join(", ")}</p>
+          )}
+          {(trip.country === "United Kingdom" || trip.country === "UK") && (
+            <span className="mt-2 inline-flex items-center gap-1 rounded-full border border-blue-200 bg-blue-50 px-2 py-0.5 text-[10px] font-medium text-blue-700">
+              🇬🇧 UK visa
+            </span>
           )}
         </div>
       </div>
