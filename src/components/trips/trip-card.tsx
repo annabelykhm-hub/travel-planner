@@ -13,7 +13,7 @@ export function TripCard({ trip, conflict }: { trip: Trip; conflict?: boolean })
         className={`group relative overflow-hidden rounded-2xl bg-card transition-all hover:-translate-y-1 ${
           conflict ? "ring-2 ring-amber-300" : ""
         }`}
-        style={{ border: "none", boxShadow: "0 1px 3px rgba(0,0,0,0.08)" }}
+        style={{ background: `${trip.color}12`, border: "none", boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}
       >
         <div className="h-1 w-full" style={{ backgroundColor: trip.color }} />
 
