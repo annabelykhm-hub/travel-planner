@@ -46,7 +46,7 @@ const COUNTRY_FLAGS: Record<string, string> = {
   "sweden": "🇸🇪", "switzerland": "🇨🇭", "syria": "🇸🇾", "taiwan": "🇹🇼", "tajikistan": "🇹🇯",
   "tanzania": "🇹🇿", "thailand": "🇹🇭", "tunisia": "🇹🇳", "turkey": "🇹🇷", "turkmenistan": "🇹🇲",
   "ukraine": "🇺🇦", "united arab emirates": "🇦🇪", "uae": "🇦🇪", "united kingdom": "🇬🇧",
-  "uk": "🇬🇧", "united states": "🇺🇸", "usa": "🇺🇸", "us": "🇺🇸", "uzbekistan": "🇺🇿",
+  "uk": "🇬🇧", "united states": "🇺🇸", "united states of america": "🇺🇸", "usa": "🇺🇸", "us": "🇺🇸", "america": "🇺🇸", "uzbekistan": "🇺🇿",
   "venezuela": "🇻🇪", "vietnam": "🇻🇳", "yemen": "🇾🇪",
 };
 
