@@ -59,7 +59,7 @@ export default async function DashboardPage({
     if (items.length === 0) return null;
     return (
       <section className="space-y-3">
-        <h2 className="text-lg font-semibold">{title}</h2>
+        <h2 className="text-xs font-medium uppercase tracking-widest text-muted-foreground">{title}</h2>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((trip) => (
             <TripCard key={trip.id} trip={trip} conflict={conflicts.has(trip.id)} />
@@ -71,11 +71,8 @@ export default async function DashboardPage({
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Trips</h1>
-          <p className="text-sm text-muted-foreground">Everything coming up, at a glance.</p>
-        </div>
+      <div>
+        <h1 className="text-3xl font-medium tracking-tight">Trips</h1>
       </div>
 
       {years.length > 1 && <YearFilter years={years} selected={selectedYear} />}
