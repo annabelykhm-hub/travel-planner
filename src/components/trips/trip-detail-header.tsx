@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { StatusBadge } from "@/components/trips/status-badge";
 import type { Trip } from "@/lib/types";
-import { formatDateRange } from "@/lib/utils";
+import { countryFlag, formatDateRange } from "@/lib/utils";
 import { deleteTrip, duplicateTrip } from "@/lib/actions/trips";
 
 export function TripDetailHeader({ trip }: { trip: Trip }) {
@@ -32,7 +32,7 @@ export function TripDetailHeader({ trip }: { trip: Trip }) {
           <StatusBadge status={trip.status} />
         </div>
         <p className="text-sm text-muted-foreground">
-          {trip.destination} · {formatDateRange(trip.start_date, trip.end_date)}
+          {countryFlag(trip.country ?? trip.destination)} {trip.destination} · {formatDateRange(trip.start_date, trip.end_date)}
         </p>
       </div>
       <DropdownMenu>

@@ -23,6 +23,38 @@ export function tripDays(start: string, end: string) {
   return `${days} ${days === 1 ? "day" : "days"}`;
 }
 
+const COUNTRY_FLAGS: Record<string, string> = {
+  "afghanistan": "🇦🇫", "albania": "🇦🇱", "algeria": "🇩🇿", "andorra": "🇦🇩", "angola": "🇦🇴",
+  "argentina": "🇦🇷", "armenia": "🇦🇲", "australia": "🇦🇺", "austria": "🇦🇹", "azerbaijan": "🇦🇿",
+  "bahrain": "🇧🇭", "bangladesh": "🇧🇩", "belarus": "🇧🇾", "belgium": "🇧🇪", "bolivia": "🇧🇴",
+  "bosnia": "🇧🇦", "brazil": "🇧🇷", "bulgaria": "🇧🇬", "cambodia": "🇰🇭", "canada": "🇨🇦",
+  "chile": "🇨🇱", "china": "🇨🇳", "colombia": "🇨🇴", "croatia": "🇭🇷", "cuba": "🇨🇺",
+  "cyprus": "🇨🇾", "czech republic": "🇨🇿", "czechia": "🇨🇿", "denmark": "🇩🇰", "ecuador": "🇪🇨",
+  "egypt": "🇪🇬", "estonia": "🇪🇪", "ethiopia": "🇪🇹", "finland": "🇫🇮", "france": "🇫🇷",
+  "georgia": "🇬🇪", "germany": "🇩🇪", "ghana": "🇬🇭", "greece": "🇬🇷", "hungary": "🇭🇺",
+  "iceland": "🇮🇸", "india": "🇮🇳", "indonesia": "🇮🇩", "iran": "🇮🇷", "iraq": "🇮🇶",
+  "ireland": "🇮🇪", "israel": "🇮🇱", "italy": "🇮🇹", "japan": "🇯🇵", "jordan": "🇯🇴",
+  "kazakhstan": "🇰🇿", "kenya": "🇰🇪", "kuwait": "🇰🇼", "kyrgyzstan": "🇰🇬", "latvia": "🇱🇻",
+  "lebanon": "🇱🇧", "libya": "🇱🇾", "lithuania": "🇱🇹", "luxembourg": "🇱🇺", "malaysia": "🇲🇾",
+  "maldives": "🇲🇻", "malta": "🇲🇹", "mexico": "🇲🇽", "moldova": "🇲🇩", "monaco": "🇲🇨",
+  "mongolia": "🇲🇳", "montenegro": "🇲🇪", "morocco": "🇲🇦", "myanmar": "🇲🇲", "nepal": "🇳🇵",
+  "netherlands": "🇳🇱", "new zealand": "🇳🇿", "nigeria": "🇳🇬", "north korea": "🇰🇵", "norway": "🇳🇴",
+  "oman": "🇴🇲", "pakistan": "🇵🇰", "palestine": "🇵🇸", "panama": "🇵🇦", "peru": "🇵🇪",
+  "philippines": "🇵🇭", "poland": "🇵🇱", "portugal": "🇵🇹", "qatar": "🇶🇦", "romania": "🇷🇴",
+  "russia": "🇷🇺", "saudi arabia": "🇸🇦", "serbia": "🇷🇸", "singapore": "🇸🇬", "slovakia": "🇸🇰",
+  "slovenia": "🇸🇮", "south africa": "🇿🇦", "south korea": "🇰🇷", "spain": "🇪🇸", "sri lanka": "🇱🇰",
+  "sweden": "🇸🇪", "switzerland": "🇨🇭", "syria": "🇸🇾", "taiwan": "🇹🇼", "tajikistan": "🇹🇯",
+  "tanzania": "🇹🇿", "thailand": "🇹🇭", "tunisia": "🇹🇳", "turkey": "🇹🇷", "turkmenistan": "🇹🇲",
+  "ukraine": "🇺🇦", "united arab emirates": "🇦🇪", "uae": "🇦🇪", "united kingdom": "🇬🇧",
+  "uk": "🇬🇧", "united states": "🇺🇸", "usa": "🇺🇸", "us": "🇺🇸", "uzbekistan": "🇺🇿",
+  "venezuela": "🇻🇪", "vietnam": "🇻🇳", "yemen": "🇾🇪",
+};
+
+export function countryFlag(country: string | null | undefined): string {
+  if (!country) return "";
+  return COUNTRY_FLAGS[country.trim().toLowerCase()] ?? "";
+}
+
 export function formatBytes(bytes: number | null) {
   if (!bytes) return "—";
   const units = ["B", "KB", "MB", "GB"];

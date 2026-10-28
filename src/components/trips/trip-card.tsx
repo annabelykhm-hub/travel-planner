@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Trip } from "@/lib/types";
-import { formatDateRange, tripDays } from "@/lib/utils";
+import { countryFlag, formatDateRange, tripDays } from "@/lib/utils";
 
 export function TripCard({ trip, conflict }: { trip: Trip; conflict?: boolean }) {
   const city = trip.city || trip.country || trip.destination;
@@ -24,7 +24,9 @@ export function TripCard({ trip, conflict }: { trip: Trip; conflict?: boolean })
                 {city}
               </h3>
               {country && (
-                <p className="text-sm text-muted-foreground mt-0.5">{country}</p>
+                <p className="text-sm text-muted-foreground mt-0.5">
+                  {countryFlag(country)} {country}
+                </p>
               )}
             </div>
             {isNow && (
