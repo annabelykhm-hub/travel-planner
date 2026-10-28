@@ -28,7 +28,7 @@ export function TripForm({ trip, existingTrips = [] }: { trip?: Trip; existingTr
     if (!trip && colorMap[val]) setColor(colorMap[val]);
   }
   const [status, setStatus] = useState(trip?.status ?? "planning");
-  const [travelers, setTravelers] = useState(trip?.travelers.join(", ") ?? "");
+  const [travelers, setTravelers] = useState(trip?.travelers.join(", ") ?? (trip ? "" : "Rost"));
   const [startDate, setStartDate] = useState(trip?.start_date ?? "");
   const [endDate, setEndDate] = useState(trip?.end_date ?? "");
 
