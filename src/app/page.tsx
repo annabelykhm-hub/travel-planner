@@ -40,7 +40,7 @@ export default async function DashboardPage({
   const allTrips = (trips ?? []) as Trip[];
 
   const years = [...new Set(allTrips.map((t) => new Date(t.start_date).getFullYear()))].sort(
-    (a, b) => b - a
+    (a, b) => a - b
   );
 
   const filtered = selectedYear
