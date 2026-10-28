@@ -7,13 +7,26 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { TRIP_STATUSES, TRIP_COLORS, type Trip } from "@/lib/types";
+
+type CountryColor = Pick<Trip, "country" | "color">;
 import { createTrip, updateTrip, type TripFormInput } from "@/lib/actions/trips";
 import { cn } from "@/lib/utils";
 
-export function TripForm({ trip }: { trip?: Trip }) {
+export function TripForm({ trip, existingTrips = [] }: { trip?: Trip; existingTrips?: CountryColor[] }) {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
+  const colorMap = Object.fromEntries(
+    existingTrips
+      .filter((t) => t.country && t.color)
+      .map((t) => [t.country!.toLowerCase(), t.color])
+  );
+
   const [color, setColor] = useState(trip?.color ?? TRIP_COLORS[0]);
+
+  function handleCountryChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const val = e.target.value.trim().toLowerCase();
+    if (!trip && colorMap[val]) setColor(colorMap[val]);
+  }
   const [status, setStatus] = useState(trip?.status ?? "planning");
   const [travelers, setTravelers] = useState(trip?.travelers.join(", ") ?? "");
   const [startDate, setStartDate] = useState(trip?.start_date ?? "");
@@ -62,7 +75,7 @@ export function TripForm({ trip }: { trip?: Trip }) {
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1.5">
           <Label htmlFor="country">Country</Label>
-          <Input id="country" name="country" defaultValue={trip?.country ?? trip?.destination ?? ""} placeholder="Portugal" required />
+          <Input id="country" name="country" defaultValue={trip?.country ?? trip?.destination ?? ""} placeholder="Portugal" required onChange={handleCountryChange} />
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="city">City <span className="text-muted-foreground">(optional)</span></Label>
