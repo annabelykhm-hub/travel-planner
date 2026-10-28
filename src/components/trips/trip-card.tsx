@@ -23,11 +23,9 @@ export function TripCard({ trip, conflict }: { trip: Trip; conflict?: boolean })
               <h3 className="text-2xl font-medium tracking-tight leading-tight text-foreground truncate">
                 {city}
               </h3>
-              {country && (
-                <p className="text-sm text-muted-foreground mt-0.5">
-                  {countryFlag(country)} {country}
-                </p>
-              )}
+              <p className="text-sm text-muted-foreground mt-0.5">
+                {countryFlag(trip.country ?? trip.destination)}{country ? ` ${country}` : ""}
+              </p>
             </div>
             {isNow && (
               <span className="shrink-0 mt-0.5 rounded-full px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider bg-foreground text-background">
