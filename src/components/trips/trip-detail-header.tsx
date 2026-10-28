@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import Link from "next/link";
-import { MoreVertical, Pencil, Share2, Trash2 } from "lucide-react";
+import { Copy, MoreVertical, Pencil, Share2, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -13,7 +13,7 @@ import {
 import { StatusBadge } from "@/components/trips/status-badge";
 import type { Trip } from "@/lib/types";
 import { formatDateRange } from "@/lib/utils";
-import { deleteTrip } from "@/lib/actions/trips";
+import { deleteTrip, duplicateTrip } from "@/lib/actions/trips";
 
 export function TripDetailHeader({ trip }: { trip: Trip }) {
   const [isPending, startTransition] = useTransition();
@@ -46,6 +46,9 @@ export function TripDetailHeader({ trip }: { trip: Trip }) {
             <Link href={`/trips/${trip.id}/edit`}>
               <Pencil className="mr-2 h-4 w-4" /> Edit
             </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => startTransition(() => duplicateTrip(trip.id))} disabled={isPending}>
+            <Copy className="mr-2 h-4 w-4" /> Duplicate
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href={`/share/${trip.share_token}`} target="_blank">

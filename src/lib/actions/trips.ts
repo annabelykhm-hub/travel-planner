@@ -44,6 +44,21 @@ export async function deleteTrip(id: string) {
   redirect("/");
 }
 
+export async function duplicateTrip(id: string) {
+  const supabase = await createClient();
+  const { data: trip, error: fetchError } = await supabase.from("trips").select("*").eq("id", id).single();
+  if (fetchError || !trip) throw new Error(fetchError?.message ?? "Not found");
+  const { id: _id, created_at: _ca, share_token: _st, ...rest } = trip;
+  const { data, error } = await supabase
+    .from("trips")
+    .insert({ ...rest, title: `${trip.title} (copy)`, start_date: "", end_date: "", status: "planning" })
+    .select("id")
+    .single();
+  if (error) throw new Error(error.message);
+  revalidatePath("/");
+  redirect(`/trips/${data.id}/edit`);
+}
+
 export async function updateTripNotes(id: string, notes: string) {
   const supabase = await createClient();
   const { error } = await supabase.from("trips").update({ notes }).eq("id", id);
