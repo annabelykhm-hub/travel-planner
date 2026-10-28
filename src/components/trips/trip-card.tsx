@@ -10,7 +10,7 @@ export function TripCard({ trip, conflict }: { trip: Trip; conflict?: boolean })
   return (
     <Link href={`/trips/${trip.id}`}>
       <div
-        className={`group relative overflow-hidden rounded-2xl bg-card transition-all hover:-translate-y-1 ${
+        className={`group relative overflow-hidden rounded-2xl bg-card transition-all hover:-translate-y-1 h-full ${
           conflict ? "ring-2 ring-amber-300" : ""
         }`}
         style={{ background: `${trip.color}12`, border: "none", boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}

@@ -60,7 +60,7 @@ export default async function DashboardPage({
     return (
       <section className="space-y-3">
         <h2 className="text-xs font-medium uppercase tracking-widest text-muted-foreground">{title}</h2>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" style={{ gridAutoRows: "1fr" }}>
           {items.map((trip) => (
             <TripCard key={trip.id} trip={trip} conflict={conflicts.has(trip.id)} />
           ))}
