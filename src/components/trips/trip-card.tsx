@@ -10,17 +10,17 @@ export function TripCard({ trip, conflict }: { trip: Trip; conflict?: boolean })
   return (
     <Link href={`/trips/${trip.id}`}>
       <div
-        className={`group relative overflow-hidden rounded-2xl bg-card transition-all hover:shadow-md hover:-translate-y-0.5 ${
+        className={`group relative overflow-hidden rounded-2xl bg-card transition-all hover:-translate-y-1 ${
           conflict ? "ring-2 ring-amber-300" : ""
         }`}
-        style={{ border: "none" }}
+        style={{ border: "none", boxShadow: "0 1px 3px rgba(0,0,0,0.08)" }}
       >
         <div className="h-1 w-full" style={{ backgroundColor: trip.color }} />
 
         <div className="p-5">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
-              <h3 className="text-xl font-medium tracking-tight leading-tight text-foreground truncate">
+              <h3 className="text-2xl font-medium tracking-tight leading-tight text-foreground truncate">
                 {city}
               </h3>
               {country && (
